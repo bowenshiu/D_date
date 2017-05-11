@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>date</title>
+        <script type="text/javascript" src="jquery.js"></script>
+    </head>
+    <script type="text/javascript">
+        
+        
+      
+        function showAns()
+        {
+            var info=$("#date").val();
+            formatCheck=info.length;
+            // alert(formatCheck);
+            var yyyy=info.substring(0,4);
+            var mmdd=info.substring(4);
+            var mm=mmdd.substring(0,2);
+            var dd=mmdd.substring(2);
+            leapyyyy=  yyyy % 4; 
+            if (formatCheck==8){
+                
+                if (leapyyyy==0){
+                    m=mm/2;
+                    
+                    if(m<1){
+                        day=dd;
+                    }
+                    else if (m==1){
+                        day=31+parseInt(dd);
+                    }
+                    else{
+                        day=parseInt(mm)*30-30+parseInt(dd)+Math.floor(m)-1;
+                    }
+                    
+                }
+                else{
+                    m=mm/2;
+                    
+                    if(m<1){
+                      day=dd; 
+                    }
+                    else if (m==1){
+                        day=31+parseInt(dd);
+                    }
+                    else{
+                      day=parseInt(mm)*30-30+parseInt(dd)+Math.floor(m)-2;
+                    }
+                }
+            }
+            else{
+              $("#answer").append("日期輸入格式錯誤喔!!!"); 
+            }
+            
+            
+            if (day>367) {
+               $("#answer").append("日期輸入格式錯誤喔!!!"); 
+            }
+            else{
+               $("#answer").append("第 "+parseInt(day)+" 天喔!"); 
+            }
+             
+        }
+        </script>
+        <input type="text" id="date" placeholder="請輸入年月日如:20171231" style="width:13em"/>
+        <button onclick = "showAns()">當年度的第幾天?</button>
+        <div id="answer"></span>
+    </body>
+</html>
